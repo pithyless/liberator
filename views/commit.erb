@@ -17,7 +17,9 @@
         <%= commit.author %>
       </span>
       authored 
-      <time class="js-relative-date">1 day ago</time>
+      <time datetime="<%= commit.authored_date %>">
+        <%= format_long_ago(commit.authored_date) %>
+      </time>
     </div>
   </div>
 <div>
