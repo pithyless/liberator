@@ -12,7 +12,7 @@
           <span class="sha"><%= commit.id %></span>
         </span>
         <div class="authorship">
-          <img class="gravatar" height="32" src="https://secure.gravatar.com/avatar/3dffcb3d181fe9842dc4b4d34a8238ca?s=140&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png" width="32">
+          <%= gravatar('f' + commit.author.email) %>
           <span class="author-name">
             <%= commit.author %>
           </span>

@@ -1,9 +1,10 @@
 require 'bundler/setup'
 require 'sinatra'
-
 require 'grit'
 require 'coderay'
 require 'time-lord'
+require 'digest/md5'
+require 'cgi'
 
 helpers do
   def repo
@@ -23,6 +24,15 @@ helpers do
     else
       from_time.ago_in_words
     end
+  end
+
+  def gravatar(email)
+    email = email.strip.downcase
+    hash = Digest::MD5.hexdigest(email)
+    missing = CGI.escape('http://www.mobileartz.com/wallpapers/cartoons/MonstersInc001.jpg')
+    size = 32
+    src = "https://secure.gravatar.com/avatar/#{hash}?s=#{size}&amp;d=#{missing}"
+    "<img class=\"gravatar\" height=\"#{size}\" width=\"#{size}\" src=\"#{src}\">"
   end
 end
 
