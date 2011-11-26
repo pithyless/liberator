@@ -1,0 +1,9 @@
+<ul>
+<% @commits.each do |commit| %>
+  <li> 
+    <a href="<%= "/commit/#{commit.id}" %>">
+      <%= commit.short_message %>
+    </a>
+  </li> 
+<% end %>
+</ul>
