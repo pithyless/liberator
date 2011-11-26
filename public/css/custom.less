@@ -1,17 +1,40 @@
 @gray:  #888;
 @black: #444;
 
+body {
+  font: 13.34px helvetica,arial,freesans,clean,sans-serif;
+  line-height: 1.4;
+}
+
+.data pre, #files .file .data {
+  font-family: 'Bitstream Vera Sans Mono','Courier',monospace;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
 .commit {
+  background: #E6F1F6;
+  border: 1px solid #C5D5DD;
+  margin: 10px 0;
+  padding: 8px 8px 0;
+
   .commit-desc p {
     font-size: 18px;
+    color: @gray;
   }
 
   .commit-meta {
+    background: white;
+    margin-left: -8px;
+    padding: 8px;
+    width: 100%;
+
     span.sha-block {
+      padding-top: 14px;
       float: right;
       color: @gray;
       font-size: 16px;
-      line-height: 36px;
+      line-height: 24px;
 
       span.sha {
         color: @black;
@@ -23,8 +46,11 @@
 
       span.author-name {
         font-size: 24px;
-        line-height: 36px;
       }
     }
   }
+}
+
+.file {
+  h3 { padding-top: 8px; }
 }
