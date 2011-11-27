@@ -4,7 +4,6 @@ require 'grit'
 require 'coderay'
 require 'time-lord'
 require 'digest/md5'
-require 'cgi'
 
 helpers do
   def repo
