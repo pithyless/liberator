@@ -5,10 +5,12 @@ Why?
 ----
 
 Do you work for the Department of Defense? 
-Or maybe `colleagues.enlightments.all? [:vim, :git, :github]`?
+
+Or maybe `!colleagues.enlightments.all? [:vim, :git, :github]`?
 
 Either way, you're stuck at work, but have no GitHub. 
-[![codehorror](http://img802.imageshack.us/img802/8567/codinghorror.png)]
+
+![codehorror](http://img802.imageshack.us/img802/8567/codinghorror.png)
 
 Never fear! Liberator is here!
 
@@ -25,5 +27,6 @@ Credits
 
 This is a paltry ripoff of some of the best parts of GitHub.
 
-If any GitHubbers are reading this, I hope you'll forgive me.
+If any GitHubbers are reading this, I hope you'll forgive me. :)
+
 It has all been for The Greater Good™.
