@@ -26,11 +26,10 @@ helpers do
     end
   end
 
-  def gravatar(email)
+  def gravatar(email, size=32)
+    missing = 'identicon'
     email = email.strip.downcase
     hash = Digest::MD5.hexdigest(email)
-    missing = CGI.escape('http://www.mobileartz.com/wallpapers/cartoons/MonstersInc001.jpg')
-    size = 32
     src = "https://secure.gravatar.com/avatar/#{hash}?s=#{size}&amp;d=#{missing}"
     "<img class=\"gravatar\" height=\"#{size}\" width=\"#{size}\" src=\"#{src}\">"
   end
