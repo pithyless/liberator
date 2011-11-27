@@ -1,0 +1,27 @@
+<% @group_commits.each do |header, commits| %>
+  <h3 class="commit-group-heading"><%= header %></h3>
+
+  <ol class="commit-group">
+  <% commits.each do |commit| %>
+    <li class="commit commit-group-item">
+
+      <%= gravatar(commit.author.email, 36) %>
+
+      <p class="commit-title ">
+        <a class="message" href="<%= "/commit/#{commit.id}" %>">
+          <%= commit.short_message %>
+        </a>
+      </p>
+
+      <div class="authorship">
+        <span class="author-name"><%= commit.author.name %></span>
+        authored
+        <time datetime="<%= commit.authored_date %>">
+          <%= format_long_ago(commit.authored_date) %>
+        </time>
+      </div>
+
+    </li>
+  <% end %>
+  </ol>
+<% end %>

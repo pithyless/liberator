@@ -58,3 +58,52 @@ body {
 .file {
   h3 { padding-top: 8px; }
 }
+
+h3.commit-group-heading {
+  margin: 15px 0 0 0;
+  padding: 5px 8px;
+  font-size: 13px;
+  color: #3A505B;
+  background: #E6F1F6;
+  border: 1px solid #C5D5DD;
+}
+
+.commit-group {
+  list-style-type: none;
+  margin: 0 0 15px 0;
+  background: #F7FBFC;
+  border: 1px solid #C5D5DD;
+  border-top: none;
+}
+.commit-group-item {
+  position: relative;
+  padding: 8px 8px 8px 52px;
+  margin: 0;
+  border: 0;
+  border-top: 1px solid #E2EAEE;
+  background: #F7FBFC;
+}
+.commit-group-item:nth-child(2n+1){
+  background: white;
+}
+.commit-group-item:first-child {
+  border-top: none;
+}
+.commit-group-item {
+  .gravatar {
+    float: left;
+    margin-left: -44px;
+  }
+  .commit-title {
+    margin: 1px 0 1px 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    a { color: #333; }
+  }
+  .authorship {
+    font-size: 12px;
+    color: #888;
+    .author-name { color: #444; }
+  }
+}
