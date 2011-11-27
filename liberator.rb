@@ -20,7 +20,7 @@ helpers do
       from_time = Time.parse(from_time)
     end
     if from_time < Time.now - Time::Week
-      Time.now.strftime('%b %d, %Y')
+      from_time.strftime('%b %d, %Y')
     else
       from_time.ago_in_words
     end
