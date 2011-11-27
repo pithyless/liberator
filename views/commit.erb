@@ -4,15 +4,15 @@
   <div class="span16">
 
     <div class="commit full-commit">
-      <h1 class="commit-title"><%= commit.short_message %></h1>
-      <div class="commit-desc"><p><%= commit.message %></p></div>
+      <p class="commit-title"><%= commit.short_message %></p>
+      <div class="commit-desc"><pre><%= commit.message %></pre></div>
 
       <div class="commit-meta clearfix">
         <span class="sha-block">commit
           <span class="sha"><%= commit.id %></span>
         </span>
         <div class="authorship">
-          <%= gravatar(commit.author.email) %>
+          <%= gravatar(commit.author.email, 24) %>
           <span class="author-name">
             <%= commit.author %>
           </span>
@@ -30,7 +30,10 @@
       <div class="file">
         <div class="meta">
           <div class="info">
-            <h3><%= diff.a_path %></h3>
+            <span class="icon">
+              <img alt="Txt" height="16" src="/img/txt.png" width="16">
+            </span>
+            <%= diff.a_path %>
           </div>
         </div>
 
