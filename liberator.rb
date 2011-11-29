@@ -81,6 +81,16 @@ get '/repo/:slug/commits/:branch' do
   erb :commits
 end
 
+get '/repo/:slug/commits/:from_branch/:to_branch' do
+  from_branch = branch_or_404(@repo, params[:from_branch])
+  to_branch = branch_or_404(@repo, params[:to_branch])
+  commits = @repo.commits_between(from_branch, to_branch)
+  @group_commits = group_by_committed_date(commits).map do |d, cs|
+    [d.strftime('%b %d, %Y'), cs]
+  end
+  erb :commits
+end
+
 get '/repo/:slug/commit/:sha' do
   @commit = @repo.commit(params[:sha])
   erb :commit
