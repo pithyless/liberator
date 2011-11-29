@@ -91,6 +91,13 @@ get '/repo/:slug/commits/:from_branch/:to_branch' do
   erb :commits
 end
 
+get '/repo/:slug/commits/:from_branch/:to_branch/diff' do
+  from_branch = branch_or_404(@repo, params[:from_branch])
+  to_branch = branch_or_404(@repo, params[:to_branch])
+  @diffs = @repo.diff(from_branch, to_branch)
+  erb :diff
+end
+
 get '/repo/:slug/commit/:sha' do
   @commit = @repo.commit(params[:sha])
   erb :commit

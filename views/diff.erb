@@ -1,0 +1,20 @@
+<div id="files" class="diff-view">
+<% @diffs.each do |diff| %>
+
+  <div class="file">
+    <div class="meta">
+      <div class="info">
+        <span class="icon">
+          <img alt="Txt" height="16" src="/img/txt.png" width="16">
+        </span>
+        <%= diff.a_path %>
+      </div>
+    </div>
+
+    <div class="data">
+      <%= render_diff(diff.diff) %>
+    </div>
+  </div>
+
+<% end %>
+</div>
