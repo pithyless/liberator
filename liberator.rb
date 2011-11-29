@@ -4,14 +4,17 @@ require 'grit'
 require 'coderay'
 require 'time-lord'
 require 'digest/md5'
+require 'yaml'
+
+APP_CONFIG = YAML.load(File.open('config/config.yml'))
 
 helpers do
   def get_repo(name)
     unless @open_repos
-      @open_repos = {
-        'stringex' =>  Grit::Repo.new("/Users/norbert/code/lib/stringex"),
-        'liberator' => Grit::Repo.new("/Users/norbert/code/play/liberator"),
-      }
+      @open_repos = {}
+      APP_CONFIG['repos'].each do |name, dir|
+        @open_repos[name] = Grit::Repo.new(dir)
+      end
     end
     @open_repos[name]
   end
