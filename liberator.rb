@@ -6,8 +6,14 @@ require 'time-lord'
 require 'digest/md5'
 
 helpers do
-  def repo
-    @repo ||= Grit::Repo.new("/Users/norbert/code/lib/stringex")
+  def get_repo(name)
+    unless @open_repos
+      @open_repos = {
+        'stringex' =>  Grit::Repo.new("/Users/norbert/code/lib/stringex"),
+        'liberator' => Grit::Repo.new("/Users/norbert/code/play/liberator"),
+      }
+    end
+    @open_repos[name]
   end
 
   def render_diff(diff)
@@ -39,7 +45,7 @@ helpers do
     cs.map! { |d,cs| [Time.parse(d), cs] }
   end
 
-  def branch_or_404(branch)
+  def branch_or_404(repo, branch)
     branch = branch.to_s
     branches = repo.branches.map(&:name)
     raise NotFound unless branches.include?(branch)
@@ -48,25 +54,34 @@ helpers do
 end
 
 get '/' do
-  @commits = repo.commits
+  @commits = []
   erb :index
 end
 
-get '/commits' do
-  redirect '/commits/master'
+before '/repo/:slug/*' do |slug, extras|
+  @repo = get_repo(slug) or raise NotFound
+  @repo_name = params[:slug]
 end
 
-get '/commits/:branch' do
+get '/repo/:slug' do
+  redirect "/repo/#{params[:slug]}/commits"
+end
+
+get '/repo/:slug/commits' do
+  redirect "/repo/#{params[:slug]}/commits/master"
+end
+
+get '/repo/:slug/commits/:branch' do
   commits_limit = 75
-  branch = branch_or_404(params[:branch])
-  commits = repo.commits(branch, commits_limit)
+  branch = branch_or_404(@repo, params[:branch])
+  commits = @repo.commits(branch, commits_limit)
   @group_commits = group_by_committed_date(commits).map do |d, cs|
     [d.strftime('%b %d, %Y'), cs]
   end
   erb :commits
 end
 
-get '/commit/:sha' do
-  @commit = repo.commit(params[:sha])
+get '/repo/:slug/commit/:sha' do
+  @commit = @repo.commit(params[:sha])
   erb :commit
 end

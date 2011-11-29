@@ -8,7 +8,7 @@
       <%= gravatar(commit.author.email, 36) %>
 
       <p class="commit-title ">
-        <a class="message" href="<%= "/commit/#{commit.id}" %>">
+        <a class="message" href="<%= "/repo/#{@repo_name}/commit/#{commit.id}" %>">
           <%= commit.short_message %>
         </a>
       </p>
