@@ -84,7 +84,7 @@ end
 get '/repo/:slug/commits/:from_branch/:to_branch' do
   from_branch = branch_or_404(@repo, params[:from_branch])
   to_branch = branch_or_404(@repo, params[:to_branch])
-  commits = @repo.commits_between(from_branch, to_branch)
+  commits = @repo.commits_between(from_branch, to_branch).reverse
   @group_commits = group_by_committed_date(commits).map do |d, cs|
     [d.strftime('%b %d, %Y'), cs]
   end
